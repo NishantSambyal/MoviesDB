@@ -1,0 +1,11 @@
+{
+    "loginScreen": {
+        "hello": "Hello",
+        "welcome_msg": "Sign into your account",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "email_error": "Please enter a valid email address",
+        "password_error": "Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one digit."
+    }
+}

@@ -9,7 +9,7 @@ import { RootStackProps } from './utility/types';
 
 const Route = () => {
   const Stack = createNativeStackNavigator<RootStackProps>();
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   const renderHomeStack = () => {
     return (

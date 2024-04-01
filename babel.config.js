@@ -3,6 +3,7 @@ module.exports = {
   plugins: [
     // ... other configs, if any
     [
+      'react-native-paper/babel',
       'module-resolver',
       {
         extensions: [
