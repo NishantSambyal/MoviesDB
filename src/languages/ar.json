@@ -1,7 +1,7 @@
 {
     "general": {
-        "yes": "Yes",
-        "cancel": "Cancel",
+        "yes": "نعم",
+        "cancel": "يلغي",
     },
     "loginScreen": {
         "hello": "مرحبًا",
@@ -13,7 +13,8 @@
         "password_error": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتحتوي على حرف صغير واحد وحرف كبير واحد ورقم واحد على الأقل."
     },
     "dashboard": {
-        "logout": "Logout",
-        "logout_msg": "Are you sure you want to logout?"
+        "logout": "تسجيل خروج",
+        "logout_msg": "هل أنت متأكد من أنك تريد تسجيل الخروج؟ ر",
+        "view_details": "عرض التفاصيل",
     }
 }

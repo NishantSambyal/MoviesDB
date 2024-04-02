@@ -5,12 +5,19 @@ import {
   MD3LightTheme as DefaultTheme,
   PaperProvider,
 } from 'react-native-paper';
-import { changeLanguageHandler } from 'src/utils/Localization/languageHandler';
+import {
+  changeLanguageHandler,
+  getSelectedLanguage,
+} from 'src/utils/Localization/languageHandler';
 import { Colors } from 'src/utils/colors';
 
 const App: FC = () => {
   useEffect(() => {
-    changeLanguageHandler().then(() => console.log('language setted'));
+    getSelectedLanguage().then(lang => {
+      if (lang) {
+        changeLanguageHandler(lang);
+      }
+    });
   }, []);
 
   const theme = {

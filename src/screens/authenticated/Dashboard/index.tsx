@@ -17,7 +17,6 @@ const Dashboard: FC = () => {
       .then(response => {
         const { results } = response as MoviesResponseType;
         setMoviesList(results);
-        console.log('response', results);
       })
       .catch((error: any) => {
         console.log('error', error);
@@ -39,7 +38,6 @@ const Dashboard: FC = () => {
         viewStyle={styles.logoutButtonView}
         onPress={() => {
           clearSession();
-          // navigation.navigate(SCREENS.Login);
         }}
       />
     </BaseScreen>

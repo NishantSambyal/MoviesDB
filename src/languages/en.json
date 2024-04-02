@@ -14,6 +14,7 @@
     },
     "dashboard": {
         "logout": "Logout",
-        "logout_msg": "Are you sure you want to logout?"
+        "logout_msg": "Are you sure you want to logout?",
+        "view_details": "View Details",
     }
 }

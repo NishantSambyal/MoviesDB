@@ -21,18 +21,3 @@ export const ApiRoutes = {
     getMoviesList: () => callAPI('GET', apiConstants.moviesList),
   },
 };
-// export const apiService = fetch('API_ENDPOINT', options)
-//   .then(function (res) {
-//     return res.json();
-//   })
-//   .then(function (resJson) {
-//     return resJson;
-//   });
-
-// export const apiServices = fetch('API_ENDPOINT', options)
-//   .then(function (res) {
-//     return res.json();
-//   })
-//   .then(function (resJson) {
-//     return resJson;
-//   });
