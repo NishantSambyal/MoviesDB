@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+import { strings } from './Localization/localizer';
 
 const SESSION_KEY = 'session';
 export const userLoggedIn = async (username: string) => {
@@ -22,10 +24,21 @@ export const isUserLoggedIn = async () => {
 };
 
 export const clearSession = async () => {
-  try {
-    await AsyncStorage.removeItem(SESSION_KEY);
-  } catch (error) {
-    console.log('error while removing', error);
-    // Error saving data
-  }
+  Alert.alert(strings.dashboard.logout, strings.dashboard.logout_msg, [
+    {
+      text: strings.general.cancel,
+      style: 'cancel',
+    },
+    {
+      text: strings.general.yes,
+      onPress: async () => {
+        try {
+          await AsyncStorage.removeItem(SESSION_KEY);
+        } catch (error) {
+          console.log('error while removing', error);
+          // Error saving data
+        }
+      },
+    },
+  ]);
 };

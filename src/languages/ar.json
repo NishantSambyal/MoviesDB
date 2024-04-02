@@ -1,4 +1,8 @@
 {
+    "general": {
+        "yes": "Yes",
+        "cancel": "Cancel",
+    },
     "loginScreen": {
         "hello": "مرحبًا",
         "welcome_msg": "تسجيل الدخول إلى حسابك",
@@ -7,5 +11,9 @@
         "login": "تسجيل الدخول",
         "email_error": "يرجى إدخال عنوان بريد إلكتروني صالح",
         "password_error": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتحتوي على حرف صغير واحد وحرف كبير واحد ورقم واحد على الأقل."
+    },
+    "dashboard": {
+        "logout": "Logout",
+        "logout_msg": "Are you sure you want to logout?"
     }
 }
