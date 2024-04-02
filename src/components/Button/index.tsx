@@ -3,13 +3,14 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 import { ButtonProps } from './types';
 
-const Button: FC<ButtonProps> = ({ onPress, viewStyle }) => {
+const Button: FC<ButtonProps> = ({ disabled, onPress, viewStyle, label }) => {
   return (
     <View style={viewStyle}>
       <TouchableOpacity
-        style={styles.container}
+        disabled={disabled}
+        style={disabled ? styles.disabledContainer : styles.container}
         onPress={onPress}>
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>{label}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,37 +1,31 @@
 import BaseScreen from '@components/BaseScreen';
 import Button from '@components/Button';
 import TextInput from '@components/InputText';
-import useNavigation from '@navigation/utility/useNavigation';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import { checkLanguageHandler } from 'src/utils/Localization/languageHandler';
 import { strings } from 'src/utils/Localization/localizer';
-import { LanguageEnum } from 'src/utils/enums';
+import { userLoggedIn } from 'src/utils/sessionManager';
+import { emailValidation, passwordValidation } from 'src/utils/validations';
 import styles from './styles';
 
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigation = useNavigation();
+  const [isValidForm, setIsValidForm] = useState(false);
+  // const arabicLang = () => {
+  //   changeLanguage(LanguageEnum.ar);
+  // };
+  // const engLang = () => {
+  //   changeLanguage(LanguageEnum.en);
+  // };
 
-  const handleFormSubmit = () => {
-    checkLanguageHandler(LanguageEnum.ar);
-    // if (!emailValidation(email)) {
-    //   Alert.alert('Invalid Email', 'Please enter a valid email address.');
-    //   return;
-    // }
+  useEffect(() => {
+    setIsValidForm(emailValidation(email) && passwordValidation(password));
+  }, [email, password]);
 
-    // if (!passwordValidation(password)) {
-    //   Alert.alert(
-    //     'Invalid Password',
-    //     'Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one digit.',
-    //   );
-    //   return;
-    // }
-    // navigation.navigate(SCREENS.Success);
-    // Perform further actions such as submitting the form
-    // e.g., make an API call, navigate to another screen, etc.
+  const handleFormSubmit = async () => {
+    userLoggedIn(email);
   };
 
   return (
@@ -47,20 +41,41 @@ const Login: FC = () => {
           viewStyle={styles.textInputView}
           label={strings.loginScreen.username}
           keyboardType='email-address'
-          onChange={setEmail}
-          error={strings.loginScreen.email_error}
+          onChange={value => {
+            setEmail(value);
+          }}
+          error={emailValidation(email) ? '' : strings.loginScreen.email_error}
         />
         <TextInput
           viewStyle={styles.textInputView}
           label={strings.loginScreen.password}
-          onChange={setPassword}
+          maxLength={15}
+          onChange={value => {
+            setPassword(value);
+          }}
           secureTextEntry={true}
+          error={
+            passwordValidation(password)
+              ? ''
+              : strings.loginScreen.password_error
+          }
         />
         <Button
+          disabled={!isValidForm}
           viewStyle={{ marginTop: 40 }}
           label={strings.loginScreen.login}
           onPress={handleFormSubmit}
         />
+        {/* <Button
+          viewStyle={{ marginTop: 40 }}
+          label={'Arabic'}
+          onPress={arabicLang}
+        />
+        <Button
+          viewStyle={{ marginTop: 40 }}
+          label={'English'}
+          onPress={engLang}
+        /> */}
       </View>
     </BaseScreen>
   );

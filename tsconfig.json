@@ -1,6 +1,11 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     // ... other configs, if any
     "baseUrl": ".",
     "paths": {

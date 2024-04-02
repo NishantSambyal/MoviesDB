@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { isUserLoggedIn } from 'src/utils/sessionManager';
 import {
   RoutesItem,
   authStackRoutes,
@@ -9,7 +10,21 @@ import { RootStackProps } from './utility/types';
 
 const Route = () => {
   const Stack = createNativeStackNavigator<RootStackProps>();
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await isUserLoggedIn();
+      setIsLoggedIn(loggedIn ? true : false);
+    };
+
+    // Call the function when component mounts
+    checkLoginStatus();
+
+    const intervalId = setInterval(checkLoginStatus, 1000); // Check every second
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const renderHomeStack = () => {
     return (

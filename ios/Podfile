@@ -24,7 +24,7 @@ if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
-
+pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 target 'MoviesDB' do
   config = use_native_modules!
 
