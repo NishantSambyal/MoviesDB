@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
   moviesListMargin: { width: 80, height: 80, marginRight: 20 },
   moviesListDescContainer: { flex: 1, alignItems: 'flex-start' },
   boldText: { fontWeight: 'bold' },
+  loadingIndicator: {
+    marginVertical: 10,
+  },
 });
 
 export default styles;

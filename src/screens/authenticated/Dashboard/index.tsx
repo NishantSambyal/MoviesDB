@@ -2,26 +2,54 @@ import BaseScreen from '@components/BaseScreen';
 import Button from '@components/Button';
 import React, { FC, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import { strings } from 'src/utils/Localization/localizer';
 import { clearSession } from 'src/utils/sessionManager';
 import MovieListItem from './component/MoviesList';
 import { getMovies } from './dataController';
 import styles from './styles';
-import { MoviesResponseType, MoviesType } from './types';
+import { ApiProps, MoviesResponseType, MoviesType } from './types';
 
 const Dashboard: FC = () => {
   const [moviesList, setMoviesList] = useState<MoviesType[]>([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const config: ApiProps = {
+    language: 'ar',
+    page: page,
+  };
+
+  const loadMoreData = () => {
+    if (!loading) {
+      setLoading(true);
+      getMovies(config)
+        .then(response => {
+          const { results } = response as MoviesResponseType;
+          setMoviesList(prevMoviesList => [...prevMoviesList, ...results]); // Append new data to the existing list
+          setPage(page + 1); // Page will be increased by 1 here
+        })
+        .catch((error: any) => {
+          console.log('error', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
 
   useEffect(() => {
-    getMovies()
-      .then(response => {
-        const { results } = response as MoviesResponseType;
-        setMoviesList(results);
-      })
-      .catch((error: any) => {
-        console.log('error', error);
-      });
+    loadMoreData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const renderFooter = () => {
+    if (!loading) {
+      return null;
+    }
+    return <ActivityIndicator style={styles.loadingIndicator} />; // Show loading indicator at the bottom of the list
+  };
+
   return (
     <BaseScreen
       scrollEnabled={false}
@@ -30,6 +58,9 @@ const Dashboard: FC = () => {
         data={moviesList}
         renderItem={({ item }) => <MovieListItem item={item} />}
         keyExtractor={item => item.id.toString()}
+        onEndReached={loadMoreData}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={renderFooter}
       />
 
       <Button

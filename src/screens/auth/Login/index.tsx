@@ -15,8 +15,8 @@ import { emailValidation, passwordValidation } from 'src/utils/validations';
 import styles from './styles';
 
 const Login: FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('user@gmail.com');
+  const [password, setPassword] = useState<string>('Pass@123');
   const [isEnglish, setIsEnglish] = useState<boolean>();
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
   const arabicLang = () => {

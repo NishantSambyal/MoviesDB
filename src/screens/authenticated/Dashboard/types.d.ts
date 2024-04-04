@@ -22,3 +22,8 @@ interface MoviesResponseType {
 interface MovieListItemProps {
   item: MoviesType;
 }
+
+interface ApiProps {
+  language: string;
+  page: number;
+}

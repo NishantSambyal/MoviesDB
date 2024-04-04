@@ -1,5 +1,6 @@
+import { ApiProps } from '@screens/authenticated/Dashboard/types';
 import { urlConstants } from 'src/utils/urlConstants';
-import { apiConstants } from './apiConstants';
+import { apiConstants, configurableApiRoutes } from './apiConstants';
 
 const headers = {
   Accept: 'application/json',
@@ -20,4 +21,13 @@ export const ApiRoutes = {
   products: {
     getMoviesList: () => callAPI('GET', apiConstants.moviesList),
   },
+};
+
+export const configurableApiRoot = (config: ApiProps) => {
+  return {
+    apis: {
+      getMoviesList: () =>
+        callAPI('GET', configurableApiRoutes(config.language, config.page)),
+    },
+  };
 };

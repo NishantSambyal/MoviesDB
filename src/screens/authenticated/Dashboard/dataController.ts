@@ -1,7 +1,8 @@
-import { ApiRoutes } from 'src/network/apiRoute';
+import { configurableApiRoot } from 'src/network/apiRoute';
 import { handleAPICall } from 'src/network/useApiController';
+import { ApiProps } from './types';
 
-const getMovies = () => {
+const getMovies = (config: ApiProps) => {
   return new Promise((resolve, reject) => {
     handleAPICall({
       handleSuccess: (data: any) => {
@@ -10,7 +11,7 @@ const getMovies = () => {
       handleFailure: (error: any) => {
         reject(error);
       },
-      route: ApiRoutes.products.getMoviesList,
+      route: configurableApiRoot(config).apis.getMoviesList,
     });
   });
 };
