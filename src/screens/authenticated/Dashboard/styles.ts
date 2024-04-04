@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
   logoutButtonView: {
     marginTop: 20,
   },
+  moviesListMainRow: { flexDirection: 'row', paddingTop: 15 },
+  moviesListMargin: { width: 80, height: 80, marginRight: 20 },
+  moviesListDescContainer: { flex: 1, alignItems: 'flex-start' },
+  boldText: { fontWeight: 'bold' },
 });
 
 export default styles;

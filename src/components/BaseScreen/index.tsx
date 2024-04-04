@@ -16,10 +16,10 @@ const BaseScreen: FC<BaseScreenProps> = ({
 }) => {
   return (
     <SafeAreaView style={[styles.container, styles.mainContainer]}>
-      <View style={[style, { flex: 1 }]}>
+      <View style={[style, styles.container]}>
         {scrollEnabled ? (
           <KeyboardAvoidingView
-            style={{ flex: 1 }}
+            style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <ScrollView>{children}</ScrollView>
           </KeyboardAvoidingView>

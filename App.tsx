@@ -1,4 +1,4 @@
-import Route from '@navigation/index';
+import Route from '@navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import React, { FC, useEffect } from 'react';
 import {

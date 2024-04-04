@@ -15,10 +15,10 @@ import { emailValidation, passwordValidation } from 'src/utils/validations';
 import styles from './styles';
 
 const Login: FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isEnglish, setIsEnglish] = useState();
-  const [isValidForm, setIsValidForm] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isEnglish, setIsEnglish] = useState<boolean>();
+  const [isValidForm, setIsValidForm] = useState<boolean>(false);
   const arabicLang = () => {
     changeLanguage(LanguageEnum.ar);
   };
@@ -45,20 +45,15 @@ const Login: FC = () => {
   return (
     <BaseScreen>
       <View style={styles.container}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 40, fontWeight: 'bold' }}>
-            {strings.loginScreen.hello}
-          </Text>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>{strings.loginScreen.hello}</Text>
           <View>
             <View style={styles.languageContainer}>
               <TouchableOpacity onPress={engLang}>
                 <Text
                   style={[
                     styles.languageBtn,
-                    {
-                      backgroundColor: isEnglish ? 'black' : 'white',
-                      color: isEnglish ? 'white' : 'black',
-                    },
+                    isEnglish ? styles.activeBtn : styles.inActiveBtn,
                   ]}>
                   EN
                 </Text>
@@ -67,10 +62,7 @@ const Login: FC = () => {
                 <Text
                   style={[
                     styles.languageBtn,
-                    {
-                      backgroundColor: !isEnglish ? 'black' : 'white',
-                      color: !isEnglish ? 'white' : 'black',
-                    },
+                    isEnglish ? styles.inActiveBtn : styles.activeBtn,
                   ]}>
                   AR
                 </Text>
@@ -78,12 +70,13 @@ const Login: FC = () => {
             </View>
           </View>
         </View>
-        <Text style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 150 }}>
+        <Text style={styles.welcomeText}>
           {strings.loginScreen.welcome_msg}
         </Text>
         <TextInput
           viewStyle={styles.textInputView}
           label={strings.loginScreen.username}
+          // eslint-disable-next-line jsx-quotes
           keyboardType='email-address'
           onChange={value => {
             setEmail(value);
@@ -106,7 +99,7 @@ const Login: FC = () => {
         />
         <Button
           disabled={!isValidForm}
-          viewStyle={{ marginTop: 40 }}
+          viewStyle={styles.topMargin40}
           label={strings.loginScreen.login}
           onPress={handleFormSubmit}
         />
