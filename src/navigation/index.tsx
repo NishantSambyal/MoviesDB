@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
+import { changeLanguageHandler } from 'src/utils/Localization/languageHandler';
 import {
   RoutesItem,
   authStackRoutes,
@@ -14,6 +15,11 @@ const Route = () => {
   const isLoggedIn = useSelector(
     (state: RootState) => state.userProfileReducer.userInfo,
   );
+
+  const currentLanguage = useSelector(
+    (state: RootState) => state.languageReducer.selectedLanguage,
+  );
+  changeLanguageHandler(currentLanguage);
 
   const renderHomeStack = () => {
     return (
