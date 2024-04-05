@@ -27,3 +27,10 @@ interface ApiProps {
   language: string;
   page: number;
 }
+
+interface DashboardScreenTypes {
+  moviesList: MoviesType[];
+  loading: boolean;
+  loadMoreData: () => void;
+  handleLogout: () => void;
+}

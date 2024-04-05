@@ -1,15 +1,9 @@
-import BaseScreen from '@components/BaseScreen';
-import Button from '@components/Button';
 import React, { FC, useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import { strings } from 'src/utils/Localization/localizer';
 import { clearSession } from 'src/utils/sessionManager';
-import MovieListItem from './component/MoviesList';
+import DashboardScreen from './component/DashboardScreen';
 import { getMovies } from './dataController';
-import styles from './styles';
 import { ApiProps, MoviesResponseType, MoviesType } from './types';
 
 const Dashboard: FC = () => {
@@ -32,8 +26,8 @@ const Dashboard: FC = () => {
       getMovies(config)
         .then(response => {
           const { results } = response as MoviesResponseType;
-          setMoviesList(prevMoviesList => [...prevMoviesList, ...results]); // Append new data to the existing list
-          setPage(page + 1); // Page will be increased by 1 here
+          setMoviesList(prevMoviesList => [...prevMoviesList, ...results]);
+          setPage(page + 1);
         })
         .catch((error: any) => {
           console.log('error', error);
@@ -49,35 +43,17 @@ const Dashboard: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderFooter = () => {
-    if (!loading) {
-      return null;
-    }
-    return <ActivityIndicator style={styles.loadingIndicator} />; // Show loading indicator at the bottom of the list
+  const handleLogout = () => {
+    clearSession();
   };
 
   return (
-    <BaseScreen
-      scrollEnabled={false}
-      style={styles.container}>
-      <FlatList
-        data={moviesList}
-        renderItem={({ item }) => <MovieListItem item={item} />}
-        keyExtractor={item => item.id.toString()}
-        onEndReached={loadMoreData}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={renderFooter}
-      />
-
-      <Button
-        label={strings.dashboard.logout}
-        buttonStyle={styles.logoutButton}
-        viewStyle={styles.logoutButtonView}
-        onPress={() => {
-          clearSession();
-        }}
-      />
-    </BaseScreen>
+    <DashboardScreen
+      moviesList={moviesList}
+      loading={loading}
+      loadMoreData={loadMoreData}
+      handleLogout={handleLogout}
+    />
   );
 };
 
