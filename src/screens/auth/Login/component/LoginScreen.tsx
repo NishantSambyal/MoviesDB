@@ -55,7 +55,7 @@ const LoginScreen = ({
           label={strings.loginScreen.username}
           value={email}
           keyboardType='email-address'
-          onChange={setEmail}
+          onChangeText={setEmail}
           error={emailValidation(email) ? '' : strings.loginScreen.email_error}
         />
         <TextInput
@@ -63,7 +63,7 @@ const LoginScreen = ({
           label={strings.loginScreen.password}
           value={password}
           maxLength={15}
-          onChange={setPassword}
+          onChangeText={setPassword}
           secureTextEntry={true}
           error={
             passwordValidation(password)

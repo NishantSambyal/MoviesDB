@@ -1,13 +1,6 @@
 import { ViewStyle } from 'react-native';
+import { TextInputProps } from 'react-native-paper';
 
-interface InputTextProps {
-  label: string;
-  value?: string;
-  maxLength?: number;
-  keyboardType?: string | undefined;
-  secureTextEntry?: boolean;
+interface InputTextProps extends TextInputProps {
   viewStyle?: ViewStyle;
-  placeholder?: string;
-  onChange: (value: string) => void;
-  error?: string;
 }

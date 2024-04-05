@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.red,
   },
   moreDetailButton: {
-    backgroundColor: 'skyblue',
+    backgroundColor: Colors.skyBlue,
     borderRadius: 2,
     alignItems: 'flex-start',
     alignSelf: 'flex-start',

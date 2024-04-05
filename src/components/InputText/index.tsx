@@ -8,10 +8,8 @@ import { InputTextProps } from './types';
 const TextInput: FC<InputTextProps> = ({
   label,
   maxLength,
-  keyboardType,
   secureTextEntry,
   viewStyle,
-  onChange,
   error,
   ...props
 }) => {
@@ -24,17 +22,9 @@ const TextInput: FC<InputTextProps> = ({
         placeholderTextColor={Colors.placeholder}
         label={label}
         maxLength={maxLength}
-        onChangeText={onChange}
-        keyboardType={keyboardType}
         secureTextEntry={secureTextEntryState}
         contentStyle={[styles.input]}
-        style={[
-          // {
-          //   direction: isRtl ? 'rtl' : 'ltr',
-          //   textAlign: isRtl ? 'right' : 'left',
-          // },
-          styles.inputStyle,
-        ]}
+        style={styles.inputStyle}
         {...props}
         right={
           secureTextEntry ? (

@@ -7,4 +7,5 @@ export const Colors = {
   white: '#FFFFFF',
   black: '#000000',
   red: '#EB5B59',
+  skyBlue: 'skyblue',
 };

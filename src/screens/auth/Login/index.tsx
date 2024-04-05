@@ -1,18 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from 'src/redux/slices/userProfileSlice';
 import { RootState } from 'src/redux/store';
 import {
   changeLanguage,
   changeLanguageHandler,
 } from 'src/utils/Localization/languageHandler';
 import { LanguageEnum } from 'src/utils/enums';
-import { userLoggedIn } from 'src/utils/sessionManager';
 import { emailValidation, passwordValidation } from 'src/utils/validations';
 import LoginScreen from './component/LoginScreen';
 
 const Login: FC = () => {
-  const [email, setEmail] = useState<string>('user@gmail.com');
-  const [password, setPassword] = useState<string>('Pass@123');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
   const currentLanguage = useSelector(
     (state: RootState) => state.languageReducer.selectedLanguage,
@@ -25,9 +25,15 @@ const Login: FC = () => {
 
   const dispatch = useDispatch();
   const arabicLang = () => {
+    if (currentLanguage === LanguageEnum.ar) {
+      return;
+    }
     changeLanguage(LanguageEnum.ar, dispatch);
   };
   const engLang = () => {
+    if (currentLanguage === LanguageEnum.en) {
+      return;
+    }
     changeLanguage(LanguageEnum.en, dispatch);
   };
 
@@ -36,7 +42,7 @@ const Login: FC = () => {
   }, [email, password]);
 
   const handleFormSubmit = async () => {
-    userLoggedIn(email);
+    dispatch(loginUser(email));
   };
 
   return (
