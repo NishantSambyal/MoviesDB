@@ -3,6 +3,8 @@ import Button from '@components/Button';
 import React, { FC, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/redux/store';
 import { strings } from 'src/utils/Localization/localizer';
 import { clearSession } from 'src/utils/sessionManager';
 import MovieListItem from './component/MoviesList';
@@ -15,8 +17,12 @@ const Dashboard: FC = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  const currentLanguage = useSelector(
+    (state: RootState) => state.languageReducer.selectedLanguage,
+  );
+
   const config: ApiProps = {
-    language: 'ar',
+    language: currentLanguage,
     page: page,
   };
 

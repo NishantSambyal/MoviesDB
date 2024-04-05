@@ -1,9 +1,9 @@
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
+    'react-native-paper/babel',
     // ... other configs, if any
     [
-      'react-native-paper/babel',
       'module-resolver',
       {
         extensions: [

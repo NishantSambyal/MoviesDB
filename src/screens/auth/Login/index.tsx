@@ -4,9 +4,11 @@ import TextInput from '@components/InputText';
 import React, { FC, useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'src/redux/store';
 import {
   changeLanguage,
-  getSelectedLanguage,
+  changeLanguageHandler,
 } from 'src/utils/Localization/languageHandler';
 import { strings } from 'src/utils/Localization/localizer';
 import { LanguageEnum } from 'src/utils/enums';
@@ -17,22 +19,23 @@ import styles from './styles';
 const Login: FC = () => {
   const [email, setEmail] = useState<string>('user@gmail.com');
   const [password, setPassword] = useState<string>('Pass@123');
-  const [isEnglish, setIsEnglish] = useState<boolean>();
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
+  const currentLanguage = useSelector(
+    (state: RootState) => state.languageReducer.selectedLanguage,
+  );
+  const [isEnglish] = useState<boolean>(currentLanguage === LanguageEnum.en);
+  useEffect(() => {
+    changeLanguageHandler(currentLanguage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const dispatch = useDispatch();
   const arabicLang = () => {
-    changeLanguage(LanguageEnum.ar);
+    changeLanguage(LanguageEnum.ar, dispatch);
   };
   const engLang = () => {
-    changeLanguage(LanguageEnum.en);
+    changeLanguage(LanguageEnum.en, dispatch);
   };
-
-  useEffect(() => {
-    getSelectedLanguage().then(lang => {
-      if (lang) {
-        setIsEnglish(lang === LanguageEnum.en);
-      }
-    });
-  }, []);
 
   useEffect(() => {
     setIsValidForm(emailValidation(email) && passwordValidation(password));
@@ -55,7 +58,7 @@ const Login: FC = () => {
                     styles.languageBtn,
                     isEnglish ? styles.activeBtn : styles.inActiveBtn,
                   ]}>
-                  EN
+                  ENG
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={arabicLang}>
@@ -64,7 +67,7 @@ const Login: FC = () => {
                     styles.languageBtn,
                     isEnglish ? styles.inActiveBtn : styles.activeBtn,
                   ]}>
-                  AR
+                  ARAB
                 </Text>
               </TouchableOpacity>
             </View>
@@ -76,6 +79,7 @@ const Login: FC = () => {
         <TextInput
           viewStyle={styles.textInputView}
           label={strings.loginScreen.username}
+          value={email}
           // eslint-disable-next-line jsx-quotes
           keyboardType='email-address'
           onChange={value => {
@@ -86,6 +90,7 @@ const Login: FC = () => {
         <TextInput
           viewStyle={styles.textInputView}
           label={strings.loginScreen.password}
+          value={password}
           maxLength={15}
           onChange={value => {
             setPassword(value);

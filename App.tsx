@@ -1,25 +1,16 @@
 import Route from '@navigation';
 import { NavigationContainer } from '@react-navigation/native';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import {
   MD3LightTheme as DefaultTheme,
   PaperProvider,
 } from 'react-native-paper';
-import {
-  changeLanguageHandler,
-  getSelectedLanguage,
-} from 'src/utils/Localization/languageHandler';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from 'src/redux/store';
 import { Colors } from 'src/utils/colors';
 
 const App: FC = () => {
-  useEffect(() => {
-    getSelectedLanguage().then(lang => {
-      if (lang) {
-        changeLanguageHandler(lang);
-      }
-    });
-  }, []);
-
   const theme = {
     ...DefaultTheme,
     colors: {
@@ -31,7 +22,11 @@ const App: FC = () => {
   return (
     <NavigationContainer>
       <PaperProvider theme={theme}>
-        <Route />
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <Route />
+          </PersistGate>
+        </Provider>
       </PaperProvider>
     </NavigationContainer>
   );
