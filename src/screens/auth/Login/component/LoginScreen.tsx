@@ -1,14 +1,14 @@
 import BaseScreen from '@components/BaseScreen';
 import Button from '@components/Button';
 import TextInput from '@components/InputText';
-import React from 'react';
+import React, { FC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { strings } from 'src/utils/Localization/localizer';
 import { emailValidation, passwordValidation } from 'src/utils/validations';
 import styles from '../styles';
 
-const LoginScreen = ({
+const LoginScreen: FC<LoginProps> = ({
   email,
   setEmail,
   password,
