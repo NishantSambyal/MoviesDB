@@ -27,6 +27,7 @@ const DashboardScreen: FC<DashboardScreenTypes> = ({
       style={styles.container}>
       <FlatList
         data={moviesList}
+        numColumns={2}
         renderItem={({ item }) => <MovieListItem item={item} />}
         keyExtractor={item => item.id.toString()}
         onEndReached={loadMoreData}

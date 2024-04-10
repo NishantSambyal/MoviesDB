@@ -17,6 +17,8 @@
         "logout_msg": "Are you sure you want to logout?",
         "view_details": "View Details",
         "popularity": "Popularity:",
-        "release_date": "Released Date"
+        "release_date": "Released Date",
+        "english": "ENG",
+        "arabic" : "عربي"
     }
 }
