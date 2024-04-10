@@ -19,6 +19,7 @@ yarn start
 ```
 ## Screenshot
 ![Simulator Screenshot - iPhone 15 Pro - 2024-04-10 at 18 19 36](https://github.com/NishantSambyal/MoviesDB/assets/29910510/ca27d035-f5b6-4038-8ab8-bd3ba6fc7907)![Simulator Screenshot - iPhone 15 Pro - 2024-04-10 at 18 19 24](https://github.com/NishantSambyal/MoviesDB/assets/29910510/4be5d364-df2f-48e1-aa0f-5d0185faab42)
+![Uploading Simulator Screenshot - iPhone 15 Pro - 2024-04-10 at 19.39.05.png…]()
 
 
 ## Step 2: Start your Application
