@@ -32,7 +32,7 @@ const LoginScreen: FC<LoginProps> = ({
                     styles.languageBtn,
                     isEnglish ? styles.activeBtn : styles.inActiveBtn,
                   ]}>
-                  ENG
+                  {strings.dashboard.english}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={arabicLang}>
@@ -41,7 +41,7 @@ const LoginScreen: FC<LoginProps> = ({
                     styles.languageBtn,
                     isEnglish ? styles.inActiveBtn : styles.activeBtn,
                   ]}>
-                  ARAB
+                  {strings.dashboard.arabic}
                 </Text>
               </TouchableOpacity>
             </View>

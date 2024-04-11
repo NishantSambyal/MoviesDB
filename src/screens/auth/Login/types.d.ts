@@ -6,7 +6,6 @@ interface LoginProps {
   password: string;
   handleFormSubmit: () => void;
   isValidForm: boolean;
-  error: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
 }

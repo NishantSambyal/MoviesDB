@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
   logoutButtonView: {
     marginTop: 20,
   },
-  moviesListMainRow: { flexDirection: 'row', paddingTop: 15 },
-  moviesListMargin: { width: 80, height: 80, marginRight: 20 },
+  moviesListMainRow: { flex: 1, marginHorizontal: 10 },
+  moviesListMargin: { width: '100%', height: 160, borderRadius: 8 },
   moviesListDescContainer: { flex: 1, alignItems: 'flex-start' },
-  boldText: { fontWeight: 'bold' },
+  boldText: { fontWeight: 'bold', paddingVertical: 10 },
   loadingIndicator: {
     marginVertical: 10,
   },
