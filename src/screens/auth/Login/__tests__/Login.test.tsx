@@ -1,5 +1,5 @@
 import '@testing-library/jest-native/extend-expect';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'src/redux/store';
@@ -30,14 +30,5 @@ describe('Login Component', () => {
     fireEvent.changeText(emailInput, 'test@example.com');
     fireEvent.changeText(passwordInput, 'Password@123');
     expect(submitButton).not.toBeDisabled();
-
-    // Simulate form submission
-    fireEvent.press(submitButton);
-
-    // Wait for the login process to complete
-    await waitFor(() => {
-      // Add your assertions for what should happen after form submission
-      // For example, you might want to check if the user is redirected to another screen after successful login
-    });
   });
 });
