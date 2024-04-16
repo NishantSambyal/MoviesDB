@@ -7,4 +7,5 @@ interface ButtonProps {
   viewStyle?: ViewStyle;
   buttonStyle?: ViewStyle;
   buttonTextStyle?: TextStyle;
+  testID?: string;
 }

@@ -1,29 +1,15 @@
-jest.mock('react-native-localization');
-
+import '@testing-library/jest-native/extend-expect';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'src/redux/store';
+
 import Login from '..';
 
-// Mock react-native-localization module
-// jest.mock('react-native-localization', () => {
-//   // Import JSON files inside the jest.mock() implementation
-//   const ar = require('@languages/ar.json');
-//   const en = require('@languages/en.json');
-
-//   // Return the mocked module
-//   return {
-//     default: jest.fn().mockImplementation(() => ({
-//       ar,
-//       en,
-//     })),
-//   };
-// });
-
+jest.useFakeTimers();
 describe('Login Component', () => {
   test('Submitting form with valid email and password', async () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId } = render(
       <Provider store={store}>
         <Login />
       </Provider>,
@@ -31,7 +17,7 @@ describe('Login Component', () => {
 
     const emailInput = getByTestId('email-input');
     const passwordInput = getByTestId('password-input');
-    const submitButton = getByText('Submit');
+    const submitButton = getByTestId('Submit');
 
     // Simulate user input
     fireEvent.changeText(emailInput, 'test@example.com');
@@ -42,7 +28,7 @@ describe('Login Component', () => {
 
     // Check if form becomes valid after inputting email and password
     fireEvent.changeText(emailInput, 'test@example.com');
-    fireEvent.changeText(passwordInput, 'password123');
+    fireEvent.changeText(passwordInput, 'Password@123');
     expect(submitButton).not.toBeDisabled();
 
     // Simulate form submission
