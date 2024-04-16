@@ -10,7 +10,7 @@ const persistConfig = {
   //   whitelist: ['language'],
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   languageReducer,
   userProfileReducer,
 });
