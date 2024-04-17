@@ -7,7 +7,9 @@ import { MovieListItemProps } from '../types';
 
 const MovieListItem: FC<MovieListItemProps> = ({ item }) => {
   return (
-    <View style={styles.moviesListMainRow}>
+    <View
+      style={styles.moviesListMainRow}
+      testID={`movie-item-${item.id}`}>
       <Image
         source={{ uri: urlConstants.imagePath + item.poster_path }}
         style={styles.moviesListMargin}

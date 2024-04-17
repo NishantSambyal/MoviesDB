@@ -34,6 +34,7 @@ const DashboardScreen: FC<DashboardScreenTypes> = ({
         onEndReached={loadMoreData}
         onEndReachedThreshold={0.5}
         ListFooterComponent={renderFooter}
+        testID='dashboard-movie-list'
       />
 
       <Button
