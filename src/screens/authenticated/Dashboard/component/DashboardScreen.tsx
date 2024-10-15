@@ -23,6 +23,7 @@ const DashboardScreen: FC<DashboardScreenTypes> = ({
 
   return (
     <BaseScreen
+      testID='dashboard-component'
       scrollEnabled={false}
       style={styles.container}>
       <FlatList
@@ -33,9 +34,11 @@ const DashboardScreen: FC<DashboardScreenTypes> = ({
         onEndReached={loadMoreData}
         onEndReachedThreshold={0.5}
         ListFooterComponent={renderFooter}
+        testID='dashboard-movie-list'
       />
 
       <Button
+        testID='logout-button'
         label={strings.dashboard.logout}
         buttonStyle={styles.logoutButton}
         viewStyle={styles.logoutButtonView}

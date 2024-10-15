@@ -15,7 +15,6 @@ const handleAPICall = async ({
 }: HandleAPICallType) => {
   try {
     const response = await route(payload);
-    console.log('response', response);
     if (response.status === RESPONSE_CODE.success) {
       const data = response.json();
       handleSuccess(data);

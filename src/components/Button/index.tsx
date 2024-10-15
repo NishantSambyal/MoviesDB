@@ -10,10 +10,12 @@ const Button: FC<ButtonProps> = ({
   label,
   buttonStyle,
   buttonTextStyle,
+  testID,
 }) => {
   return (
     <View style={viewStyle}>
       <TouchableOpacity
+        testID={testID}
         disabled={disabled}
         style={[
           disabled ? styles.disabledContainer : styles.container,

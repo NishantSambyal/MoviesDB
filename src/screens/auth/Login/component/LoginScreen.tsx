@@ -51,6 +51,7 @@ const LoginScreen: FC<LoginProps> = ({
           {strings.loginScreen.welcome_msg}
         </Text>
         <TextInput
+          testID='email-input'
           viewStyle={styles.textInputView}
           label={strings.loginScreen.username}
           value={email}
@@ -59,6 +60,7 @@ const LoginScreen: FC<LoginProps> = ({
           error={emailValidation(email) ? '' : strings.loginScreen.email_error}
         />
         <TextInput
+          testID='password-input'
           viewStyle={styles.textInputView}
           label={strings.loginScreen.password}
           value={password}
@@ -72,6 +74,7 @@ const LoginScreen: FC<LoginProps> = ({
           }
         />
         <Button
+          testID='Submit'
           disabled={!isValidForm}
           viewStyle={styles.topMargin40}
           label={strings.loginScreen.login}

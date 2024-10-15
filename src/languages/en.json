@@ -1,7 +1,7 @@
 {
     "general": {
         "yes": "Yes",
-        "cancel": "Cancel",
+        "cancel": "Cancel"
     },
     "loginScreen": {
         "hello": "Hello",

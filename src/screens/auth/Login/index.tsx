@@ -34,7 +34,7 @@ const Login: FC = () => {
     setIsValidForm(emailValidation(email) && passwordValidation(password));
   }, [email, password]);
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = () => {
     dispatch(loginUser(email));
   };
 
